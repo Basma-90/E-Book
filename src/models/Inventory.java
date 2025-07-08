@@ -1,6 +1,7 @@
 package src.models;
 import java.util.*;
 
+
 public class Inventory {
     private Map<String, Book> books = new HashMap<>();
 
@@ -18,7 +19,15 @@ public class Inventory {
 
     public String buyBookByISBN(String isbn, int quantity, String email, String address) {
         Book book = books.get(isbn);
-        if (book == null) throw new RuntimeException("Book not found");
-        return book.Buy(isbn, quantity, email, address);
+        if(book instanceof ShowcaseBook) {
+            throw new UnsupportedOperationException("Showcase books are not for sale");
+        }
+        if(book instanceof EBook) {
+            return ((EBook) book).Buy(isbn, quantity, email);
+        } else if(book instanceof PaperBook) {
+            return ((PaperBook) book).Buy(isbn, quantity, email, address);
+        } else {
+            return "Book not found or not available for sale.";
+        }
     }
 }

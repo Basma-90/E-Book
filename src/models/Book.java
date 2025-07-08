@@ -37,7 +37,4 @@ public class Book implements IBook {
         return false;
     }
 
-    public String Buy(String ISBN, int quantity, String email, String address) {
-        return "This method should be overridden in subclasses.";
-    }
 }

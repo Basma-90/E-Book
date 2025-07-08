@@ -2,9 +2,10 @@ package src.models;
 import src.models.Book;
 import src.services.MailService;
 import src.interfaces.BooksForSale;
+import src.interfaces.PaperBookSale;
 import src.services.ShippingService;
 
-public class PaperBook extends Book implements BooksForSale {
+public class PaperBook extends Book implements PaperBookSale, BooksForSale {
     private int stock;
 
     public PaperBook(String isbn, String title, double price, int year, int stock) {

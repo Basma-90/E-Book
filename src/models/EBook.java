@@ -1,8 +1,9 @@
 package src.models;
 import src.services.MailService;
 import src.interfaces.BooksForSale;
+import src.interfaces.EBookSale;
 
-public class EBook extends Book{
+public class EBook extends Book implements EBookSale{
     private String fileType;
     private MailService mailService;
     private static final int MAX_QUANTITY = 1; 
@@ -14,7 +15,7 @@ public class EBook extends Book{
     }
 
     @Override
-    public String Buy(String ISBN, int quantity, String email, String address) {
+    public String Buy(String ISBN, int quantity, String email) {
         if (quantity > MAX_QUANTITY) {
             return "You can only buy one copy of an eBook at a time.";
         }

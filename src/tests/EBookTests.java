@@ -1,5 +1,4 @@
 package src.tests;
-
 import src.models.Book;
 import src.models.EBook;
 import src.models.Inventory;
@@ -19,11 +18,26 @@ public class EBookTests {
         ShowcaseBook showcaseBook = new ShowcaseBook("1122334455", "Test ShowcaseBook", 2023);
         Inventory inventory = new Inventory();
 
-        testEBookPurchase(ebook, mailService);
-        testEBookFileType(ebook);
-        testPaperBookPurchase(paperBook);
-        testShowcaseBookDetails(showcaseBook);
+        System.out.println("=== Running Tests ===");
+        System.out.println();
 
+        System.out.println("=== Test: EBook Purchase ===");
+        testEBookPurchase(ebook, mailService);
+        System.out.println();
+
+        System.out.println("=== Test: EBook File Type ===");
+        testEBookFileType(ebook);
+        System.out.println();
+
+        System.out.println("=== Test: PaperBook Purchase ===");
+        testPaperBookPurchase(paperBook);
+        System.out.println();
+
+        System.out.println("=== Test: ShowcaseBook Details ===");
+        testShowcaseBookDetails(showcaseBook);
+        System.out.println();
+
+        System.out.println("=== Test: Inventory Operations ===");
         addToInventory(inventory, ebook);
         addToInventory(inventory, paperBook);
         addToInventory(inventory, showcaseBook);
@@ -33,11 +47,14 @@ public class EBookTests {
         displayInventory(inventory);
 
         testInventoryCapacity(inventory);
+        System.out.println();
+
+        System.out.println("=== All Tests Completed ===");
     }
 
     public static void testEBookPurchase(EBook ebook, MailService mailService) {
-        String result = ebook.Buy("1234567890", 1, "test@example.com", "123 Test St");
-        System.out.println(result);
+        String result = ebook.Buy("1234567890", 1, "test@example.com");
+        System.out.println("Purchase Result: " + result);
         assert result.contains("Purchase successful");
     }
 
@@ -49,7 +66,7 @@ public class EBookTests {
 
     public static void testPaperBookPurchase(PaperBook paperBook) {
         String result = paperBook.Buy("0987654321", 1, "test@example.com", "123 Test St");
-        System.out.println(result);
+        System.out.println("Purchase Result: " + result);
         assert result.contains("Purchase successful");
     }
 
